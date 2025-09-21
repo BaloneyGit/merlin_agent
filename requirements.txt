@@ -1,12 +1,12 @@
-time
-re
+python-dotenv
 playwright
 langgraph
+openai
 langchain
-ipython
 langchain_openai
 langchain_community
 dotenv
 typing
-chromadb
-langchain_chroma
+re
+json
+uuid
