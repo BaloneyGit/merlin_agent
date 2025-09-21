@@ -91,7 +91,7 @@ def build_tools(merlin: merlin_interact):
 merlin = merlin_interact()
 tools = build_tools(merlin)
 
-model = ChatOpenAI(model="gpt-4o",temperature=0).bind_tools(tools, tool_choice="required", parallel_tool_calls=False)
+model = ChatOpenAI(model="gpt-4o",temperature=0.2).bind_tools(tools, tool_choice="required", parallel_tool_calls=False)
 
 
 # AgentState
