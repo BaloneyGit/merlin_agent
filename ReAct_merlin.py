@@ -88,11 +88,10 @@ def build_tools(merlin: merlin_interact):
     ]
 
 
-# tools = [merlin_interact.ask_merlin, merlin_interact.read_merlin, merlin_interact.submit_password]
 merlin = merlin_interact()
 tools = build_tools(merlin)
 
-model = ChatOpenAI(model="gpt-4o",temperature=0).bind_tools(tools)
+model = ChatOpenAI(model="gpt-4o",temperature=0).bind_tools(tools, tool_choice="required", parallel_tool_calls=False)
 
 
 # AgentState
@@ -114,7 +113,7 @@ def model_call(state: AgentState) -> dict:
                   "You are solving Merlin's riddle levels."
                   "You must interact with Merlin ONLY via tools: ask_merlin(question), read_merlin(), submit_password(password). " \
                   "Never produce plain assistant text." \
-                #   "Please talk to Merlin starting with: what are the hints for this level?"
+                  "Make sure you use a read_merlin() after doing an ask_merlin()"
     )
     msgs = [system_prompt] + list(state["messages"])
     response = model.invoke(msgs)
